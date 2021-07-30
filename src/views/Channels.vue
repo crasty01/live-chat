@@ -5,17 +5,17 @@
 </template>
 
 <script>
-import Channel from './Channel.vue';
+import Channel from '../components/Channel.vue';
 
 export default {
   name: 'Home',
   components: {
     Channel,
   },
-  created() {
-    const path = window.location.pathname.substring(1);
-    if (path.length > 0) this.channels = path.split('/').filter((e) => e !== '').map((e) => e.toLowerCase());
-    else this.channels = null;
+  props: {
+    channels: {
+      type: Array,
+    },
   },
 };
 </script>
@@ -23,5 +23,6 @@ export default {
 <style lang="scss">
 .channles {
   display: flex;
+  color: #f5f5f5;
 }
 </style>

@@ -4,11 +4,11 @@ import tmijs from 'tmi.js';
 import { createApp } from 'vue';
 import App from './App.vue';
 import './registerServiceWorker';
-// import router from './router';
+import router from './router';
 
 const create = async () => {
   const app = createApp(App);
-  // app.use(router);
+  app.use(router);
   app.config.globalProperties.$dayjs = dayjs;
   app.config.globalProperties.$tmijs = tmijs;
   app.config.globalProperties.EMOTELIST = {};

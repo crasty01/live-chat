@@ -1,22 +1,18 @@
 <template>
-  <Home />
+  <router-view />
 </template>
 
 <script>
-import Home from './components/Home.vue';
-
-export default {
-  components: {
-    Home,
-  },
-};
+export default {};
 </script>
 
 <style lang="scss">
-body {
+html {
   background-color: #f5f5f5;
-  color: #f5f5f5;
+  color: #09090b;
   font-family: 'Roboto';
+}
+body {
   margin: 0;
 }
 * {

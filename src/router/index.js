@@ -1,11 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import Channels from '../views/Channels.vue';
 import Home from '../views/Home.vue';
 
 const routes = [
   {
-    path: '/*',
+    path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/:users(.*)*',
+    name: 'Channels',
+    component: Channels,
+    props(route) {
+      return { channels: route.params.users };
+    },
   },
 ];
 
