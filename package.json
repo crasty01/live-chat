@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "dayjs": "^1.10.6",
     "register-service-worker": "^1.7.1",
+    "tmi.js": "^1.8.3",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },
@@ -27,5 +29,23 @@
     "eslint-plugin-vue": "^7.0.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2"
-  }
+  },
+  "description": "## Project setup ``` npm install ```",
+  "main": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crasty01/live-chat.git"
+  },
+  "keywords": [
+    "twitch",
+    "chat",
+    "obs",
+    "overlay"
+  ],
+  "author": "Daniel Vondra (http://danielvondra.tk/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crasty01/live-chat/issues"
+  },
+  "homepage": "https://github.com/crasty01/live-chat#readme"
 }
