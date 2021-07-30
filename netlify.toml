@@ -1,4 +1,4 @@
 [[redirects]]
   from = "/users/*"
   to = "/"
-  status = 200
+  status = 301
