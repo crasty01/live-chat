@@ -1,5 +1,9 @@
 [[redirects]]
+  from = "/static/dist/*"
+  to = "/dist/:splat"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/"
   status = 200
-  force = true
