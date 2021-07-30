@@ -37,6 +37,10 @@ export default {
   white-space: pre-line;
   background-color: #09090b;
 
+  & .message-text {
+    line-height: 1.4em;
+  }
+
   & .message-name {
     font-weight: 900;
 

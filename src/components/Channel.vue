@@ -42,6 +42,9 @@ export default {
     this.client.connect().catch(console.error);
     this.client.on('message', (channel, tags, message, self) => {
       if (self) return;
+      console.log(this.BADGELIST[this.channel]);
+      if (!this.EMOTELIST[this.channel] || !this.BADGELIST[this.channel]) return;
+
       this.messages.push(this.createMessage({
         channel,
         message: this.$parseMessage(this, message, tags.emotes, channel.substring(1)),
@@ -74,9 +77,8 @@ export default {
     getBadges(b) {
       const badges = [];
       if (!b) return badges;
-
       Object.keys(b).forEach((key) => {
-        badges.push(this.BADGELIST[this.channel][key][b[key]]);
+        badges.push(this.$getBadgeUrl(this.BADGELIST[this.channel][key][b[key]]));
       });
       return badges;
     },

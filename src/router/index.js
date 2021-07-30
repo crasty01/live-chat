@@ -9,7 +9,11 @@ const routes = [
     component: Home,
   },
   {
-    path: '/:users(.*)*',
+    path: '/:all(.*)*',
+    redirect: '/',
+  },
+  {
+    path: '/users/:users(.*)*',
     name: 'Channels',
     component: Channels,
     props(route) {

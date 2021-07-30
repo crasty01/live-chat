@@ -1,9 +1,4 @@
 [[redirects]]
-  from = "/-assets/*"
-  to = "/-assets/*"
-  status = 200
-
-[[redirects]]
-  from = "/*"
+  from = "/users/*"
   to = "/"
   status = 200

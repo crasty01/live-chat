@@ -15,7 +15,7 @@ const create = async () => {
   app.config.globalProperties.BADGELIST = {};
   app.config.globalProperties.$fetchtEmotes = async (name) => (await fetch(`https://emote-api-1.danielvondra.repl.co/${name}/emotes`)).json();
   app.config.globalProperties.$fetchtBadges = async (name) => (await fetch(`https://emote-api-1.danielvondra.repl.co/${name}/badges`)).json();
-  app.config.globalProperties.$getImageUrl = (id, type, size = 2) => {
+  app.config.globalProperties.$getEmoteUrl = (id, type, size = 2) => {
     switch (type) {
       case 'twitch':
         return `https://static-cdn.jtvnw.net/emoticons/v2/${id}/default/dark/${size}.0`;
@@ -27,6 +27,7 @@ const create = async () => {
         return '';
     }
   };
+  app.config.globalProperties.$getBadgeUrl = (id, size = 2) => `https://static-cdn.jtvnw.net/badges/v1/${id}/${size}`;
   app.config.globalProperties.$replaceAt = (message, start, end, url) => {
     const alt = message.substring(start, end + 1);
     const emRep = `<img class="message-emote message-emote-twitch" alt="${alt}" src="${url}"/>`;
@@ -46,13 +47,13 @@ const create = async () => {
     }
     emoteList = emoteList.sort((a, b) => b.end - a.end);
     emoteList.forEach((e) => {
-      message = _.$replaceAt(message, e.start, e.end, _.$getImageUrl(e.key, 'twitch'));
+      message = _.$replaceAt(message, e.start, e.end, _.$getEmoteUrl(e.key, 'twitch'));
     });
     message = message.replace(/[a-z0-9:(\\/)-;<>.|&@"]+/gi, (key) => {
       if (_.EMOTELIST[channel].pleb[key] && _.EMOTELIST[channel].pleb[key].type !== 'twitch') {
         return `<img
           class="message-emote message-emote-${_.EMOTELIST[channel].pleb[key].type}" alt="${key}"
-          src="${_.$getImageUrl(_.EMOTELIST[channel].pleb[key].id, _.EMOTELIST[channel].pleb[key].type)}"/>`;
+          src="${_.$getEmoteUrl(_.EMOTELIST[channel].pleb[key].id, _.EMOTELIST[channel].pleb[key].type)}"/>`;
       }
       return key;
     });
