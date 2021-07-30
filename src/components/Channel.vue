@@ -1,9 +1,7 @@
 <template>
   <div class="channel">
     <div class="chat">
-      <div class="chat-content">
-        <Message v-for="message in messages" v-bind:key=message :message="message"/>
-      </div>
+      <Message v-for="message in messages" v-bind:key=message :message="message"/>
     </div>
   </div>
 </template>
@@ -51,6 +49,7 @@ export default {
         ...tags,
       }));
       if (this.messages.length > 50) this.messages.shift();
+      this.scrollToEnd();
     });
 
     this.client.on('messagedeleted', (_, __, ___, tags) => {
@@ -67,6 +66,12 @@ export default {
     async load() {
       this.EMOTELIST[this.channel] = await this.$fetchtEmotes(this.channel);
       this.BADGELIST[this.channel] = await this.$fetchtBadges(this.channel);
+    },
+    scrollToEnd() {
+      const container = this.$el.querySelector('.chat');
+      console.log(container.scrollTop, container.scrollHeight);
+      container.scrollTop = container.scrollHeight;
+      console.log(container.scrollTop, container.scrollHeight);
     },
     createMessage(info) {
       return {
@@ -107,19 +112,13 @@ export default {
   flex-grow: 1;
 
   & .chat {
-    height: 100vh;
-    position: relative;
+    max-height: 100vh;
+    bottom: 0;
+    display: grid;
+    gap: .2rem;
     width: 100%;
-    overflow: hidden;
-
-    & .chat-content {
-      position: absolute;
-      bottom: 0;
-      display: grid;
-      gap: .2rem;
-      width: 100%;
-      padding: .5rem;
-    }
+    padding: .5rem;
+    overflow-y: scroll;
   }
 }
 </style>
