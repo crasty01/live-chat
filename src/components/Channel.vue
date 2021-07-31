@@ -82,7 +82,7 @@ export default {
       this.deleteMessages();
     },
     generateMax() {
-      this.max = Math.floor((window.innerHeight - (16 * 2)) / 40) + 1;
+      this.max = Math.floor((window.innerHeight - (16 * 2)) / 40) + 2;
     },
     deleteMessages() {
       this.messages = this.messages.slice(this.messages.length - this.max);
