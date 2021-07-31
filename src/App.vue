@@ -14,6 +14,7 @@ html {
 }
 body {
   margin: 0;
+  padding: 1rem;
 }
 * {
   box-sizing: border-box;

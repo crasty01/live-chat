@@ -1,5 +1,5 @@
 <template>
-  <div class="message">
+  <div class="message" v-bind:class="{ placeholder: message.placeholder }">
     <img
       v-bind:key=badge
       v-for="badge of message.badges"
@@ -23,19 +23,23 @@ export default {
     },
   },
   created() {
-    console.log(this.message);
+    // console.log(this.message);
   },
 };
 </script>
 
 <style lang="scss">
 .message {
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 0.8rem;
   border-radius: 0.25rem;
   width: 100%;
   word-break: break-word;
   white-space: pre-line;
   background-color: #09090b;
+
+  &.placeholder {
+    opacity: 0;
+  }
 
   & .message-text {
     line-height: 1.4em;

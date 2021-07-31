@@ -24,5 +24,11 @@ export default {
 .channles {
   display: flex;
   color: #f5f5f5;
+  align-items: flex-end;
+  height: calc(100vh - 2rem);
+
+  & .channel:not(:first-child) {
+    margin-left: 1rem;
+  }
 }
 </style>

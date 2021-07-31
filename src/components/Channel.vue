@@ -18,6 +18,7 @@ export default {
 
   data: () => ({
     messages: [],
+    max: 0,
   }),
 
   props: {
@@ -28,9 +29,12 @@ export default {
   },
 
   created() {
+    this.generateMax();
+    this.populate();
     this.load();
+    window.addEventListener('resize', this.resize);
     this.client = new this.$tmijs.Client({
-      options: { debug: true },
+      // options: { debug: true },
       connection: {
         reconnect: true,
         secure: true,
@@ -40,42 +44,67 @@ export default {
     this.client.connect().catch(console.error);
     this.client.on('message', (channel, tags, message, self) => {
       if (self) return;
-      console.log(this.BADGELIST[this.channel]);
       if (!this.EMOTELIST[this.channel] || !this.BADGELIST[this.channel]) return;
 
       this.messages.push(this.createMessage({
         channel,
         message: this.$parseMessage(this, message, tags.emotes, channel.substring(1)),
         ...tags,
+        placeholder: false,
       }));
-      if (this.messages.length > 50) this.messages.shift();
-      this.scrollToEnd();
+      if (this.messages.length > this.max) this.deleteMessages();
     });
 
     this.client.on('messagedeleted', (_, __, ___, tags) => {
       this.deleteMessageById(tags['target-msg-id']);
+      this.populate();
     });
     this.client.on('ban', (_, username) => {
       this.deleteMessageByUser(username);
+      this.populate();
     });
     this.client.on('timeout', (_, username) => {
       this.deleteMessageByUser(username);
+      this.populate();
     });
+  },
+  updated() {
+    this.scrollToEnd();
   },
   methods: {
     async load() {
       this.EMOTELIST[this.channel] = await this.$fetchtEmotes(this.channel);
       this.BADGELIST[this.channel] = await this.$fetchtBadges(this.channel);
     },
+    resize() {
+      this.generateMax();
+      this.populate();
+      this.deleteMessages();
+    },
+    generateMax() {
+      this.max = Math.floor((window.innerHeight - (16 * 2)) / 40) + 1;
+    },
+    deleteMessages() {
+      this.messages = this.messages.slice(this.messages.length - this.max);
+    },
+    populate() {
+      if (this.max - this.messages.length <= 0) return;
+      new Array(this.max - this.messages.length).fill(0).map(() => this.createMessage({
+        channel: this.channel,
+        id: null,
+        'display-name': 'placeholder',
+        message: '',
+        badges: [],
+        placeholder: true,
+      })).forEach((e) => this.messages.unshift(e));
+    },
     scrollToEnd() {
       const container = this.$el.querySelector('.chat');
-      console.log(container.scrollTop, container.scrollHeight);
       container.scrollTop = container.scrollHeight;
-      console.log(container.scrollTop, container.scrollHeight);
     },
     createMessage(info) {
       return {
-        ...this.unwrap(info, ['id', 'display-name', 'emotes', 'color', 'message']),
+        ...this.unwrap(info, ['id', 'display-name', 'message', 'placeholder']),
         badges: this.getBadges(info.badges),
       };
     },
@@ -112,13 +141,15 @@ export default {
   flex-grow: 1;
 
   & .chat {
-    max-height: 100vh;
+    //max-height: 100vh;
+    max-height: calc(100vh - 2rem);
     bottom: 0;
     display: grid;
     gap: .2rem;
     width: 100%;
-    padding: .5rem;
-    overflow-y: scroll;
+    //padding: .5rem;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
   }
 }
 </style>
