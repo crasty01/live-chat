@@ -148,8 +148,16 @@ export default {
     gap: .2rem;
     width: 100%;
     //padding: .5rem;
-    overflow-y: hidden;
+    overflow-y: scroll;
+
     scroll-behavior: smooth;
+
+    //-ms-overflow-style: none;
+    //scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 </style>
