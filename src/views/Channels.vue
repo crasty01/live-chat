@@ -23,7 +23,6 @@ export default {
 <style lang="scss">
 .channles {
   display: flex;
-  color: #f5f5f5;
   align-items: flex-end;
   height: calc(100vh - 2rem);
 

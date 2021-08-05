@@ -35,7 +35,8 @@ export default {
   width: 100%;
   word-break: break-word;
   white-space: pre-line;
-  background-color: #09090b;
+  background-color: #212126;
+  color: #f5f5f5;
 
   &.placeholder {
     opacity: 0;
@@ -47,6 +48,7 @@ export default {
 
   & .message-name {
     font-weight: 900;
+    color: #bf94ff;
 
     &::after {
       content: ":"
@@ -69,6 +71,7 @@ export default {
     margin-bottom: -0.2em;
     margin-top: -0.2em;
     margin-right: .2rem;
+    display: none; //TODO: test
   }
 }
 </style>

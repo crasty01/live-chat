@@ -8,8 +8,7 @@ export default {};
 
 <style lang="scss">
 html {
-  background-color: #f5f5f5;
-  color: #09090b;
+  background-color: #09090b;
   font-family: 'Roboto';
 }
 body {
