@@ -26,6 +26,9 @@ export default {
       type: String,
       required: true,
     },
+    horizontal: {
+      type: Boolean,
+    },
   },
 
   created() {
@@ -82,6 +85,7 @@ export default {
       this.deleteMessages();
     },
     generateMax() {
+      console.log(this.horizontal);
       this.max = this.horizontal ? 50 : Math.floor((window.innerHeight - (16 * 2)) / 40) + 2;
     },
     deleteMessages() {

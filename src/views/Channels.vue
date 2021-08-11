@@ -5,6 +5,7 @@
       v-for="channel in this.channels"
       :key=channel
       :channel="channel"
+      :horizontal="horizontal"
     />
   </div>
 </template>
