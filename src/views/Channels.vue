@@ -34,7 +34,7 @@ export default {
   display: flex;
   align-items: flex-end;
   //height: calc(100vh - 2rem);
-  height: 100vh;
+  //height: 100vh;
 
   & .channel:not(:first-child) {
     margin-left: 1rem;

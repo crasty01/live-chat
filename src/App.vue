@@ -12,6 +12,8 @@ html {
   font-family: 'Roboto';
 }
 body {
+  display: grid;
+  place-content: center;
   margin: 0;
   //padding: 1rem;
 }
