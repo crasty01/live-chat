@@ -13,8 +13,6 @@ html {
 }
 body {
   margin: 0;
-  //padding: 1rem;
-  padding: calc((100vh - 38px) / 2) 0;
 }
 * {
   box-sizing: border-box;

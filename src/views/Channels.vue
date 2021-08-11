@@ -36,8 +36,14 @@ export default {
   //height: calc(100vh - 2rem);
   //height: 100vh;
 
+  padding: 1rem;
+
   & .channel:not(:first-child) {
     margin-left: 1rem;
   }
+}
+
+.horizontal.channels {
+  padding: calc((100vh - 38px) / 2) 0;
 }
 </style>
