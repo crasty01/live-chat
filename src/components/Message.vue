@@ -62,6 +62,7 @@ export default {
     margin-bottom: -0.5em;
     margin-top: -0.5em;
     user-select: text;
+    object-fit: contain;
   }
 
   & .message-badge {
