@@ -147,8 +147,9 @@ export default {
   width: 100%;
 
   & .chat {
-    //max-height: 100vh;
-    max-height: calc(100vh - 2rem);
+    max-height: 100vh;
+    //max-height: calc(100vh - 2rem);
+    //height: 100vh;
     bottom: 0;
     display: flex;
     flex-direction: column;
