@@ -104,8 +104,11 @@ export default {
     },
     scrollToEnd() {
       const container = this.$el.querySelector('.chat');
-      // container.scrollTop = container.scrollHeight;
-      container.scrollLeft = container.scrollWidth - container.clientWidth;
+      if (this.horizontal) {
+        container.scrollLeft = container.scrollWidth - container.clientWidth;
+      } else {
+        container.scrollTop = container.scrollHeight;
+      }
     },
     createMessage(info) {
       return {
