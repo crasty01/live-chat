@@ -1,7 +1,7 @@
 <template>
   <div class="channel">
     <div class="chat">
-      <Message v-for="message in messages" v-bind:key=message :message="message"/>
+      <Message v-for="message in messages" :key=message :message="message"/>
     </div>
   </div>
 </template>
@@ -100,7 +100,8 @@ export default {
     },
     scrollToEnd() {
       const container = this.$el.querySelector('.chat');
-      container.scrollTop = container.scrollHeight;
+      // container.scrollTop = container.scrollHeight;
+      container.scrollLeft = container.scrollWidth - container.clientWidth;
     },
     createMessage(info) {
       return {
@@ -139,16 +140,18 @@ export default {
 .channel {
   flex-basis: 25rem;
   flex-grow: 1;
+  width: 100%;
 
   & .chat {
     //max-height: 100vh;
     max-height: calc(100vh - 2rem);
     bottom: 0;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: .2rem;
     width: 100%;
+    overflow: scroll;
     //padding: .5rem;
-    overflow-y: scroll;
 
     scroll-behavior: smooth;
 
@@ -158,6 +161,12 @@ export default {
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+}
+
+.horizontal .channel {
+  & .chat {
+    flex-direction: row;
   }
 }
 </style>

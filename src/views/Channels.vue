@@ -1,6 +1,11 @@
 <template>
-  <div v-if="this.channels" class="channles">
-    <Channel :id=channel v-for="channel in this.channels" v-bind:key=channel :channel="channel"/>
+  <div v-if="this.channels" class="channles" :class="{ horizontal }">
+    <Channel
+      :id=channel
+      v-for="channel in this.channels"
+      :key=channel
+      :channel="channel"
+    />
   </div>
 </template>
 
@@ -15,6 +20,9 @@ export default {
   props: {
     channels: {
       type: Array,
+    },
+    horizontal: {
+      type: Boolean,
     },
   },
 };

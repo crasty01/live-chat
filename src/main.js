@@ -28,11 +28,13 @@ const create = async () => {
     }
   };
   app.config.globalProperties.$getBadgeUrl = (id, size = 2) => `https://static-cdn.jtvnw.net/badges/v1/${id}/${size}`;
+  app.config.globalProperties.$getImg = (alt, url) => `<img class="message-emote message-emote-twitch" width=28 height=28 alt="${alt}" src="${url}"/>`;
   app.config.globalProperties.$replaceAt = (message, start, end, url) => {
     const alt = message.substring(start, end + 1);
-    const emRep = `<img class="message-emote message-emote-twitch" alt="${alt}" src="${url}"/>`;
+    const emRep = app.config.globalProperties.$getImg(alt, url);
     return message.substring(0, start) + emRep + message.substring(end + 1, message.length);
   };
+  // eslint-disable-next-line no-unused-vars
   app.config.globalProperties.$parseMessage = (_, ogMessage, emotes, channel) => {
     let message = ogMessage;
     message = message.replace(/</gm, '𧄟').replace(/>/gm, '𧄞').replace(/=/g, '𧄜');// .replace(/:/gm, '𧄝')
@@ -51,9 +53,14 @@ const create = async () => {
     });
     message = message.replace(/[a-z0-9:(\\/)-;<>.|&@"]+/gi, (key) => {
       if (_.EMOTELIST[channel].pleb[key] && _.EMOTELIST[channel].pleb[key].type !== 'twitch') {
-        return `<img
+        return app.config.globalProperties.$getImg(
+          key,
+          _.$getEmoteUrl(_.EMOTELIST[channel].pleb[key].id, _.EMOTELIST[channel].pleb[key].type),
+        );
+        /* return `<img
           class="message-emote message-emote-${_.EMOTELIST[channel].pleb[key].type}" alt="${key}"
-          src="${_.$getEmoteUrl(_.EMOTELIST[channel].pleb[key].id, _.EMOTELIST[channel].pleb[key].type)}"/>`;
+          src="${_.$getEmoteUrl(_.EMOTELIST[channel].pleb[key].id,
+            _.EMOTELIST[channel].pleb[key].type)}"/>`; */
       }
       return key;
     });

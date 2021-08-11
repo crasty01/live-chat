@@ -1,7 +1,7 @@
 <template>
-  <div class="message" v-bind:class="{ placeholder: message.placeholder }">
+  <div class="message" :class="{ placeholder: message.placeholder }">
     <img
-      v-bind:key=badge
+      :key=badge
       v-for="badge of message.badges"
       :src="badge"
       alt="badge"
@@ -57,8 +57,8 @@ export default {
 
   & .message-emote {
     display: inline-block;
-    max-height: 1.8em;
-    max-width: 1.8em;
+    //max-height: 1.8em;
+    //max-width: 1.8em;
     margin-bottom: -0.5em;
     margin-top: -0.5em;
     user-select: text;
@@ -73,5 +73,9 @@ export default {
     margin-right: .2rem;
     display: none; //TODO: test
   }
+}
+
+.horizontal .message {
+  white-space: nowrap;
 }
 </style>

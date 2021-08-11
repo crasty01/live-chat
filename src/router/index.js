@@ -7,7 +7,10 @@ const routes = [
     name: 'Channels',
     component: Channels,
     props(route) {
-      return { channels: typeof route.query.user === 'string' ? [route.query.user] : [...new Set(route.query.user)] };
+      return {
+        channels: typeof route.query.user === 'string' ? [route.query.user] : [...new Set(route.query.user)],
+        horizontal: route.query.horizontal !== undefined,
+      };
     },
   },
 ];
