@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.channels" class="channles" :class="{ horizontal }">
+  <div v-if="this.channels" class="channels" :class="{ horizontal }">
     <Channel
       :id=channel
       v-for="channel in this.channels"
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss">
-.channles {
+.channels {
   display: flex;
   align-items: flex-end;
   //height: calc(100vh - 2rem);
