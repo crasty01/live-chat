@@ -77,6 +77,6 @@ export default {
 
 .horizontal .message {
   white-space: nowrap;
-  width: auto;
+  width: max-content;
 }
 </style>
