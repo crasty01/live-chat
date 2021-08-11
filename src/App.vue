@@ -12,8 +12,6 @@ html {
   font-family: 'Roboto';
 }
 body {
-  display: grid;
-  place-content: center;
   margin: 0;
   //padding: 1rem;
   padding: calc((100vh - 38px) / 2) 0;
