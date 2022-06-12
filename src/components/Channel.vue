@@ -1,7 +1,7 @@
 <template>
   <div class="channel">
     <div class="chat">
-      <Message v-for="message in messages" :key=message :message="message"/>
+      <Message v-for="message in messages" :key=message :message="message" :badges="badges"/>
     </div>
   </div>
 </template>
@@ -27,6 +27,9 @@ export default {
       required: true,
     },
     horizontal: {
+      type: Boolean,
+    },
+    badges: {
       type: Boolean,
     },
   },

@@ -6,6 +6,7 @@
       :src="badge"
       alt="badge"
       class="message-badge"
+      :class="{ show: badges }"
     >
     <span class="message-name" >
       {{ message['display-name'] }}
@@ -20,6 +21,9 @@ export default {
     message: {
       type: Object,
       required: true,
+    },
+    badges: {
+      type: Boolean,
     },
   },
   created() {
