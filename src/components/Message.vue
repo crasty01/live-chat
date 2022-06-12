@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss">
 .message {
+  font-family: 'Roboto', sans-serif;
   padding: 0.5rem 0.8rem;
   border-radius: 0.25rem;
   width: 100%;
