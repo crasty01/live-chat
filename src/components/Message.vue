@@ -73,6 +73,10 @@ export default {
     margin-top: -0.2em;
     margin-right: .2rem;
     display: none; //TODO: test
+
+    &.show {
+      display: inline-block;
+    }
   }
 }
 

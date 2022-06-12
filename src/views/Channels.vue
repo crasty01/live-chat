@@ -1,11 +1,12 @@
 <template>
-  <div v-if="this.channels" class="channels" :class="{ horizontal }">
+  <div v-if="this.channels" class="channels" :class="{ horizontal, badges }">
     <Channel
       :id=channel
       v-for="channel in this.channels"
       :key=channel
       :channel="channel"
       :horizontal="horizontal"
+      :badges="badges"
     />
   </div>
 </template>
@@ -23,6 +24,9 @@ export default {
       type: Array,
     },
     horizontal: {
+      type: Boolean,
+    },
+    badges: {
       type: Boolean,
     },
   },

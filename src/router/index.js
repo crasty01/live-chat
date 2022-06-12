@@ -10,6 +10,7 @@ const routes = [
       return {
         channels: typeof route.query.user === 'string' ? [route.query.user] : [...new Set(route.query.user)],
         horizontal: route.query.horizontal !== undefined,
+        badges: route.query.badges !== undefined,
       };
     },
   },
